@@ -5,18 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Артикуляциялық жаттығулар</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f3f4f6; }
-        header { background: #2563eb; color: white; padding: 15px; text-align: center; }
-        section { padding: 20px; text-align: center; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h2 { color: #2563eb; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .exercise { padding: 20px; background: #e5e7eb; border-radius: 8px; position: relative; }
-        .btn { background: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: block; margin-top: 10px; }
-        footer { background: #2563eb; color: white; text-align: center; padding: 10px; margin-top: 20px; }
-        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
-        .modal-content { background: white; margin: 10% auto; padding: 20px; width: 50%; border-radius: 10px; position: relative; }
-        .close { position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('diction2.jpg') no-repeat center center/cover;
+            color: white;
+        }
+        header {
+            background: rgba(37, 99, 235, 0.8);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        h2 { color: #facc15; text-align: center; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .exercise {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .btn {
+            background: #facc15;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 50%;
+            border-radius: 10px;
+            position: relative;
+            color: black;
+            text-align: center;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -26,7 +91,7 @@
 
     <section>
         <div class="container">
-            <h2>Айқын әрі таза сөйлеуді дамытуға арналған жаттығулар</h2>
+            <h2>Айқын әрі таза сөйлеуді дамытуға арналған жаттығулар</h2>
             <div class="grid">
                 <div class="exercise"><h3>Жаттығу 1</h3><button class="btn" onclick="openModal(1)">Толығырақ</button></div>
                 <div class="exercise"><h3>Жаттығу 2</h3><button class="btn" onclick="openModal(2)">Толығырақ</button></div>
@@ -34,15 +99,6 @@
                 <div class="exercise"><h3>Жаттығу 4</h3><button class="btn" onclick="openModal(4)">Толығырақ</button></div>
                 <div class="exercise"><h3>Жаттығу 5</h3><button class="btn" onclick="openModal(5)">Толығырақ</button></div>
                 <div class="exercise"><h3>Жаттығу 6</h3><button class="btn" onclick="openModal(6)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 7</h3><button class="btn" onclick="openModal(7)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 8</h3><button class="btn" onclick="openModal(8)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 9</h3><button class="btn" onclick="openModal(9)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 10</h3><button class="btn" onclick="openModal(10)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 11</h3><button class="btn" onclick="openModal(11)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 12</h3><button class="btn" onclick="openModal(12)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 13</h3><button class="btn" onclick="openModal(13)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 14</h3><button class="btn" onclick="openModal(14)">Толығырақ</button></div>
-                <div class="exercise"><h3>Жаттығу 15</h3><button class="btn" onclick="openModal(15)">Толығырақ</button></div>
             </div>
         </div>
     </section>
@@ -51,23 +107,48 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 id="modal-title"></h2>
-            <textarea id="modal-text" rows="5" style="width: 100%;"></textarea>
-            <input type="file" id="fileUpload">
+            <p id="modal-text"></p>
+            <div class="timer" id="timer">30</div>
         </div>
     </div>
 
-    <footer>
-        <p>© 2025 DictionPro. Барлық құқықтар қорғалған.</p>
-    </footer>
-
     <script>
+        let countdown;
         function openModal(id) {
+            clearInterval(countdown);
             document.getElementById("modal").style.display = "block";
-            document.getElementById("modal-title").innerText = "Жаттығу " + id;
+            
+            let exercises = {
+                1: { title: "🟡 Жылан жаттығуы", text: "Тілді оңға және солға баяу қозғалтыңыз. 5 рет қайталаңыз." },
+                2: { title: "🔵 Сағат тілі жаттығуы", text: "Тілді сағат тілі бойынша айналдырыңыз. 10 рет қайталаңыз." },
+                3: { title: "🟢 Бақа жаттығуы", text: "Аузыңызды кең ашып, тілді төмен түсіріңіз. 7 рет қайталаңыз." },
+                4: { title: "🟠 Қарлығаш жаттығуы", text: "Тілді жоғары көтеріп, таңдайға тигізіңіз. 6 рет қайталаңыз." },
+                5: { title: "🔴 Тәтті балмұздақ", text: "Тілді ерінге тигізіп, баяу айналдырыңыз. 8 рет қайталаңыз." },
+                6: { title: "🟣 Мысықтың тілі", text: "Тілді алға созып, баяу кері тартыңыз. 5 рет қайталаңыз." }
+            };
+
+            document.getElementById("modal-title").innerText = exercises[id].title;
+            document.getElementById("modal-text").innerText = exercises[id].text;
+            
+            let timeLeft = 30;
+            document.getElementById("timer").innerText = timeLeft;
+            countdown = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    alert("Уақыт аяқталды! Келесі жаттығуға көшуге болады.");
+                }
+            }, 1000);
         }
+
         function closeModal() {
             document.getElementById("modal").style.display = "none";
+            clearInterval(countdown);
         }
     </script>
 </body>
+<footer>
+    <p>© 2025 DictionPro. Барлық құқықтар қорғалған.</p>
+</footer>
 </html>
