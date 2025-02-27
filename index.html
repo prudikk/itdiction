@@ -14,7 +14,6 @@
             position: relative;
         }
 
-        /* Затемнение фона */
         body::before {
             content: "";
             position: absolute;
@@ -54,6 +53,20 @@
             color: #ffeb3b;
         }
 
+        .register-btn {
+            background: #ffeb3b;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #ffd700;
+        }
+
         section {
             padding: 60px;
             text-align: center;
@@ -90,7 +103,7 @@
         .icon {
             font-size: 60px;
             margin-bottom: 20px;
-            opacity: 0.6; /* Прозрачность иконок */
+            opacity: 0.6;
         }
 
         footer {
@@ -111,6 +124,7 @@
                 <li><a href="#services">Қызметтер</a></li>
                 <li><a href="#pricing">Бағалар</a></li>
                 <li><a href="#contact">Байланыс</a></li>
+                <li><a href="register.html" class="register-btn">Регистрация</a></li>
             </ul>
         </nav>
     </header>
@@ -151,6 +165,8 @@
                     <p>Толық мүмкіндіктер жиынтығы</p>
                 </div>
             </div>
+            <br>
+            <a href="register.html" class="register-btn">Регистрация</a>
         </div>
     </section>
 
