@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DictionPro 🎙</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://tntmusic.ru/media/content/article@2x/2017-07-11_12-44-18__a7907748-6636-11e7-811d-83c1d6458942.jpg') no-repeat center center/cover;
+            color: white;
+            position: relative;
+        }
+
+        /* Затемнение фона */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        header {
+            background: rgba(20, 20, 20, 0.8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        section {
+            padding: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.6; /* Прозрачность иконок */
+        }
+
+        footer {
+            background: rgba(20, 20, 20, 0.8);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DictionPro 🎙</h1>
+        <nav>
+            <ul>
+                <li><a href="#services">Қызметтер</a></li>
+                <li><a href="#pricing">Бағалар</a></li>
+                <li><a href="#contact">Байланыс</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <h2>Біздің қызметтер</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">🎤</div>
+                    <h3>Дикцияны жақсарту</h3>
+                    <p>Айқын және сенімді сөйлеу дағдыларын дамыту.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📊</div>
+                    <h3>Дауыс талдауы</h3>
+                    <p>Сіздің дауысыңыздың ерекшеліктерін анықтау және оны жақсарту бойынша кеңестер.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🎮</div>
+                    <h3>Интерактивті ойындар</h3>
+                    <p>Сөйлеу жылдамдығы мен анықтығын арттыруға көмектесетін ойындар.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <h2>Бағалар</h2>
+            <div class="grid">
+                <div class="card" onclick="window.location.href='ii.html'">
+                    <h3>Бесплатный</h3>
+                    <p>Негізгі мүмкіндіктер</p>
+                </div>
+                <div class="card">
+                    <h3>Premium</h3>
+                    <p>Толық мүмкіндіктер жиынтығы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Байланыс</h2>
+        <p>Сұрақтарыңыз болса, бізге хабарласыңыз.</p>
+    </section>
+
+    <footer>
+        <p>© 2025 DictionPro. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>

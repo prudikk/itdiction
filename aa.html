@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жылдам сөйлеу 🎤</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+            background: url('https://cdnstatic.rg.ru/uploads/images/139/48/46/kris.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: -1;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            font-size: 28px;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+        
+        .twister-box {
+            display: none;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function showTwisters(category) {
+            const twisters = {
+                'articulation': [
+                    'Қара қарақат, қара қарақат, қара қарақат.',
+                    'Бақа бақаны бақады, бақа бақылдайды.',
+                    'Жеті жолбарыс жортады, жолында жолбарыс жоқ.',
+                    'Тәтті тәтті тәтті, тәтті тәтті тәтті!',
+                    'Қызыл қасқыр қыр асып кетті.',
+                    'Көк көлік көпірден өтті.',
+                    'Бала бал балмұздақ жейді.',
+                    'Жылдам жылан жылжиды.',
+                    'Аспан астында ақпан аяз.',
+                    'Үйдің іші үйдей жылы.'
+                ],
+                'speed': [
+                    'Шырша шырыны шырынды.',
+                    'Сары сарымсақ сарғайды.',
+                    'Бота боздап барады.',
+                    'Қара қазанда қара қайнатпа қайнайды.',
+                    'Тау-тасты аралап, таңдай татады.',
+                    'Қарға қар үстінде қарқылдайды.',
+                    'Көктемде көк құрақ көгерер.',
+                    'Күміс қоңырау күмбірлеп кетті.',
+                    'Ақ аю айдында айқара жүр.',
+                    'Жылан жылжыды, жылдам жылжып.'
+                ],
+                'complexity': [
+                    'Қырық құмырсқа қырман қырда қырықтық.',
+                    'Шымшық шырылдап, шынарға шықты.',
+                    'Сүттен сүзбе сүзілді.',
+                    'Жеті жорға желе шапты.',
+                    'Торғай торда тұр.',
+                    'Шырша шырышы шырынды.',
+                    'Айдында аққу ақырын жүзеді.',
+                    'Жолбарыс жол үстінде жортады.',
+                    'Қарлығаш қанат қағып қалықтайды.',
+                    'Шөжелер шырылдайды, шөпке шомады.'
+                ]
+            };
+            
+            document.getElementById("twister-box").innerHTML = twisters[category].map(t => `<p>${t}</p>`).join('');
+            document.getElementById("twister-box").style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>Жылдам сөйлеу 🎤</header>
+    <div class="container">
+        <div class="grid">
+            <div class="card" onclick="showTwisters('articulation')">
+                <h3>Айқындық 👄</h3>
+                <p>Дауыс анық болсын</p>
+            </div>
+            <div class="card" onclick="showTwisters('speed')">
+                <h3>Жылдамдық 🏃‍♂️</h3>
+                <p>Тез сөйлеуді үйреніңіз</p>
+            </div>
+            <div class="card" onclick="showTwisters('complexity')">
+                <h3>Күрделілік 🎭</h3>
+                <p>Қиын сөздерді меңгеріңіз</p>
+            </div>
+        </div>
+        <div id="twister-box" class="twister-box"></div>
+    </div>
+</body>
+</html>

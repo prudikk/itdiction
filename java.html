@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Быстрый диктор ойыны</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #121212; color: white; text-align: center; }
+        header { background: #1e40af; color: white; padding: 15px; font-size: 24px; }
+        .container { max-width: 800px; margin: 20px auto; background: #1e293b; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .text-box { font-size: 24px; padding: 20px; border-radius: 5px; background: rgba(255, 255, 255, 0.1); min-height: 80px; display: flex; justify-content: center; align-items: center; }
+        .controls { margin-top: 20px; }
+        select, button { padding: 10px; font-size: 16px; margin: 5px; }
+        .record-btn, .start-text-btn { background: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .stop-btn { background: red; color: white; border: none; border-radius: 5px; cursor: pointer; display: none; }
+        .delete-btn { background: #ff3b3b; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px; }
+        .audio-container, .saved-audios { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header>🎙 Быстрый диктор ойыны</header>
+    <div class="container">
+        <div class="controls">
+            <label for="text-select">Текст таңдау:</label>
+            <select id="text-select"></select>
+            <label for="speed">Жылдамдық деңгейі:</label>
+            <select id="speed">
+                <option value="700">1 - Өте баяу</option>
+                <option value="500">2 - Баяу</option>
+                <option value="300" selected>3 - Орташа</option>
+                <option value="200">4 - Жылдам</option>
+                <option value="100">5 - Өте жылдам</option>
+            </select>
+        </div>
+        <button class="start-text-btn" id="start-text-btn">📜 Текстті бастау</button>
+        <button class="record-btn" id="record-btn">🎤 Жазуды бастау</button>
+        <button class="stop-btn" id="stop-btn">⏹ Тоқтату</button>
+        <div class="text-box" id="text-box"></div>
+        <div class="audio-container" id="audio-container"></div>
+    </div>
+    <script>
+        let texts = [
+            "Көктем келді. Қар еріп, күн жылынды. Ағаштар бүршік жарып, айнала жасыл түске боялды. Адамдар жылы киімдерін шешіп, серуендеуге шықты. Құстар жылы жақтан оралды. Барлығы табиғаттың оянуын қуанышпен қарсы алды..",
+            "Қазақтың ұлттық тағамдары – ет, бауырсақ, қымыз, шұбат. Ет – қазақ халқының басты асы. Оны қонаққа арнап асады. Бауырсақ – дастарханның сәні. Оны майға қуырып, шаймен бірге ұсынады. Қымыз бен шұбат – дәруменге бай, шөл басатын сусындар.",
+            "Адам өмір бойы білім алады. Білімді адам – табысты адам. Кітап оқу, сабаққа дайындалу, зерттеу жүргізу – бәрі де дамудың жолы. Білім – жарық, білім – болашақтың кілті.",
+            "Қазақстан – ұлан-ғайыр жері бар ел. Мұнда биік таулар, кең далалар, мөлдір өзендер бар. Алатау мен Алтайдың шыңдары, Каспий мен Балқаш көлдері – табиғаттың ерекше сыйлары.",
+            "Спорт – денсаулықтың кепілі. Жүгіру, жүзу, футбол, бокс – денені шынықтырады. Спортпен айналысқан адам сергек әрі мықты болады. Әр адам салауатты өмір салтын ұстануы керек.",
+            "дастан баха нуржигит мощь, топ 1 топ на века юху 100 баллов автоматом",
+            "Достық – өмірдің ең үлкен байлығы. Нағыз дос – қиын сәтте қасыңда болатын адам. Достар бір-біріне көмектесіп, қолдау көрсетеді. Достық сенім мен құрметке негізделген. Жақсы достар әрқашан бірге болады.",
+            "Табиғат – адамзаттың ортақ байлығы. Ормандарды қорғау, өзен-көлдерді таза ұстау – әрбір адамның міндеті. Егер табиғатты аяласаң, ол саған денсаулық пен сұлулық сыйлайды. Табиғатты қорғау – болашақ ұрпаққа аманат.",
+            "Қазіргі заман – ғылым мен технологияның дамыған уақыты. Күн сайын жаңа өнертабыстар пайда болып, адамдардың өмірін жеңілдетуде. Ғылымның арқасында медицина, көлік, байланыс салалары қарқынды дамып келеді.",
+            "Еңбек – табыстың негізі. Кім еңбек етсе, сол жетістікке жетеді. Еңбекқор адам қиындықтарға мойымайды, өз мақсатына жетуге тырысады. «Еңбек етсең, ерінбей, тояды қарның тіленбей» деген мақал бекер айтылмаған."
+        ];
+        
+        let textSelect = document.getElementById("text-select");
+        let textBox = document.getElementById("text-box");
+        let mediaRecorder;
+        let audioChunks = [];
+        let textInterval;
+        
+        texts.forEach((text, index) => {
+            let option = document.createElement("option");
+            option.value = index;
+            option.innerText = `Текст ${index + 1}`;
+            textSelect.appendChild(option);
+        });
+        
+        document.getElementById("start-text-btn").addEventListener("click", () => {
+            let words = texts[textSelect.value].split(" ");
+            let index = 0;
+            let speed = document.getElementById("speed").value;
+            textBox.innerText = "";
+            textInterval = setInterval(() => {
+                if (index < words.length) {
+                    textBox.innerText = words[index];
+                    index++;
+                } else {
+                    clearInterval(textInterval);
+                }
+            }, speed);
+        });
+        
+        document.getElementById("record-btn").addEventListener("click", async () => {
+            let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+            audioChunks = [];
+            mediaRecorder.ondataavailable = event => audioChunks.push(event.data);
+            mediaRecorder.onstop = () => {
+                let audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                let audioUrl = URL.createObjectURL(audioBlob);
+                let audioElement = document.createElement("audio");
+                audioElement.controls = true;
+                audioElement.src = audioUrl;
+                let deleteButton = document.createElement("button");
+                deleteButton.innerText = "❌ Өшіру";
+                deleteButton.classList.add("delete-btn");
+                deleteButton.addEventListener("click", () => deleteButton.parentElement.remove());
+                let container = document.createElement("div");
+                container.appendChild(audioElement);
+                container.appendChild(deleteButton);
+                document.getElementById("audio-container").appendChild(container);
+            };
+            document.getElementById("stop-btn").style.display = "inline-block";
+        });
+        
+        document.getElementById("stop-btn").addEventListener("click", () => {
+            mediaRecorder.stop();
+            document.getElementById("stop-btn").style.display = "none";
+        });
+    </script>
+</body>
+</html>
